@@ -6,7 +6,7 @@ const All = (props) => {
   return (
     <div className="container">
       <div className="todos">
-        <Todos todos={props.todos} />
+        <Todos todos={[...props.active, ...props.completed]} />
       </div>
     </div>
   );
@@ -14,7 +14,8 @@ const All = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos,
+    active: state.todos.active,
+    completed: state.todos.completed,
   };
 };
 

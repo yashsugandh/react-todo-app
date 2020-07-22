@@ -2,8 +2,6 @@
 @import "./settings";
 @import "./../../node_modules/material-design-icons/iconfont/material-icons.css";
 @import "./nav";
-@import "./todos/add";
-@import "./todos/list";
 
 .material-icons {
   font-size: inherit;
@@ -31,10 +29,10 @@ h1 {
   font-family: Raleway, sans-serif;
 }
 
-.container {
-  width: 50vw;
-  margin: 0 auto;
-}
+// .container {
+//   width: 50vw;
+//   margin: 0 auto;
+// }
 
 .brand {
   margin: 3rem 0;

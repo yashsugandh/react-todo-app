@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import TodoForm from "./TodoForm";
-import { addTodo } from "../redux/actions/todos";
+import TodoForm from "../TodoForm";
+import { addTodo } from "../../redux/actions/todos";
 
 const AddTodo = (props) => (
-  <div>
-    <h1>Add Todo</h1>
+  <div className="container todos">
+    {/* <h1>Add Todo</h1> */}
     <TodoForm
       onSubmit={(todo) => {
         props.addTodo(todo);

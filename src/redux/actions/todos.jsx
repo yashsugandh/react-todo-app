@@ -12,9 +12,10 @@ export const addTodo = ({ title = "", content = "", isCompleted = false }) => ({
 });
 
 // DELETE_TODO
-export const deleteTodo = ({ id } = {}) => ({
+export const deleteTodo = (id, key) => ({
   type: "DELETE_TODO",
   id,
+  key,
 });
 
 // EDIT_TODO

@@ -13,7 +13,7 @@ const Nav = () => {
         </li>
         <li>
           {/* NavLink to automatically identify whether the link is active */}
-          <NavLink to="/" activeClassName="active" act exact>
+          <NavLink to="/" activeClassName="active" exact>
             All
           </NavLink>
         </li>
