@@ -1,0 +1,35 @@
+input[type="text"] {
+    width: 80%;
+    border: 1px solid $gray4;
+    font-family: Montserrat, sans-serif;
+    border-radius: 12px;
+    padding: 1rem 0.5rem;
+    outline: none;
+    &:focus {
+      border: 2px solid $blue2;
+    }
+  }
+  
+  button {
+    margin-left: 2%;
+    width: 18%;
+    padding: 1rem 0.5rem;
+    border-radius: 12px;
+    outline: none;
+    border: 1px solid $blue2;
+    background: $blue2;
+    color: white;
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    &:hover {
+      background: $blue1;
+    }
+  }
+  
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+  }

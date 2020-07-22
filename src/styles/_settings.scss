@@ -1,0 +1,51 @@
+// colors
+// GRAYS
+$gray1: #333333;
+$gray2: #828282;
+$gray3: #a9a9a9;
+$gray4: #bdbdbd;
+
+// BLUES
+$blue1: #3988ee;
+$blue2: #6da6f2;
+
+// REDS
+$red1: #ec4f4f;
+$red2: #f18989;
+
+// screen
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container {
+      width: 90vw;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .container {
+      width: 90vw;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .container {
+      width: 90vw;
+    }
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .container {
+      width: 60vw;
+    }
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .container {
+      width: 50vw;
+    }
+  }

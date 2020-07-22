@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Nav from "./components/Nav";
+import Active from "./components/Active";
+import Completed from "./components/Completed";
+import All from "./components/All";
+import AddTodo from "./components/AddTodo";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="container">
+          <h1 className="brand">#todo</h1>
+          <nav>
+            <Nav />
+          </nav>
+        </div>
+        {/* Handle navigation routing */}
+        <Switch>
+          <Route path="/" component={All} exact />
+          <Route path="/active" component={Active} exact />
+          <Route path="/completed" component={Completed} exact />
+          <Route path="/add" component={AddTodo} exact />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
-
 export default App;
