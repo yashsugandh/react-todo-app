@@ -15,9 +15,9 @@ export default (state = initialState, action) => {
     case "DELETE_TODO": {
       let updatedState = state;
       updatedState[action.key] = updatedState[action.key].filter(
-        (id) => id !== action.id
+        todo => todo.id !== action.id
       );
-      return { updatedState };
+      return { ...updatedState };
     }
     case "EDIT_TODO":
       return state.map((todo) => {

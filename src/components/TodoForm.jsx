@@ -29,6 +29,10 @@ export default class TodoForm extends React.Component {
         content,
         isCompleted,
       });
+      this.setState({
+        title: "",
+        content: "",
+      });
     }
   };
 

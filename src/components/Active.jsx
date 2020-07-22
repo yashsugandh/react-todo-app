@@ -6,7 +6,7 @@ const Active = (props) => {
   return (
     <div className="container">
       <div className="todos">
-        <Todos todos={props.todos} key="active"/>
+        <Todos todos={props.todos} tabName="active"/>
       </div>
     </div>
   );

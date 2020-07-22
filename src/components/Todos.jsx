@@ -3,21 +3,53 @@ import { deleteTodo } from "../redux/actions/todos";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RiDeleteBinLine } from "react-icons/ri";
+import {
+  Input,
+  Row,
+  Col,
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+} from "reactstrap";
 
-const Todos = ({ todos, deleteTodo, key }) => {
+const Todos = ({ todos, deleteTodo, tabName }) => {
   const todoList = todos.length ? (
     todos.map((todo) => {
       return (
         <div className="collection-item" key={todo.id}>
-          {todo.title}
-          {todo.content}
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => deleteTodo(todo.id, key)}
-          >
-            <RiDeleteBinLine />
-          </span>
-          {/* <input type="checkbox" onChange={onCompletedChange} />  */}
+          <Row>
+            {/* <Col lg={{
+              offset:2,size:2
+            }}>
+          <Input type="checkbox" />
+          </Col> */}
+            <Col
+              lg={{
+                offset: 2,
+                size: 6,
+              }}
+            >
+              <Card>
+                <CardBody>
+                  <Row>
+                    <CardTitle>{todo.title}</CardTitle>
+                    <span
+                        style={{ cursor: "pointer", float:"right" }}
+                        onClick={() => deleteTodo(todo.id, tabName)}
+                      >
+                        <RiDeleteBinLine />
+                      </span>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <CardText>{todo.content}</CardText>
+                    </Col>
+                  </Row>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
         </div>
       );
     })
