@@ -6,7 +6,7 @@ const Completed = (props) => {
   return (
     <div className="container">
       <div className="todos">
-        <Todos todos={props.todos} key="completed" />{" "}
+        <Todos todos={props.completed} tabName="completed" />{" "}
       </div>
     </div>
   );
@@ -14,7 +14,7 @@ const Completed = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos.completed.filter((todo) => todo.isCompleted),
+    completed: state.todos.completed,
   };
 };
 

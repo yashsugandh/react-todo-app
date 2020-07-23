@@ -24,3 +24,11 @@ export const editTodo = (id, updates) => ({
   id,
   updates,
 });
+
+// MOVE_TODO
+export const moveTodo = (id, key, index) => ({
+  type: "MOVE_TODO",
+  id,
+  key,
+  index,
+});

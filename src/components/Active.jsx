@@ -6,7 +6,7 @@ const Active = (props) => {
   return (
     <div className="container">
       <div className="todos">
-        <Todos todos={props.todos} tabName="active"/>
+        <Todos todos={props.active} tabName="active"/>
       </div>
     </div>
   );
@@ -14,7 +14,7 @@ const Active = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos.active.filter((todo) => !todo.isCompleted),
+    active: state.todos.active,
   };
 };
 

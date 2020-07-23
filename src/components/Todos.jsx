@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteTodo } from "../redux/actions/todos";
+import { deleteTodo, moveTodo } from "../redux/actions/todos";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -13,20 +13,25 @@ import {
   CardText,
 } from "reactstrap";
 
-const Todos = ({ todos, deleteTodo, tabName }) => {
+const Todos = ({ todos, deleteTodo, tabName, moveTodo }) => {
   const todoList = todos.length ? (
-    todos.map((todo) => {
+    todos.map((todo, i) => {
       return (
         <div className="collection-item" key={todo.id}>
           <Row>
-            {/* <Col lg={{
-              offset:2,size:2
-            }}>
-          <Input type="checkbox" />
-          </Col> */}
             <Col
               lg={{
                 offset: 2,
+                size: 2,
+              }}
+            >
+              <Input
+                type="checkbox"
+                onChange={() => moveTodo(todo.id, tabName, i)}
+              />
+            </Col>
+            <Col
+              lg={{
                 size: 6,
               }}
             >
@@ -35,11 +40,11 @@ const Todos = ({ todos, deleteTodo, tabName }) => {
                   <Row>
                     <CardTitle>{todo.title}</CardTitle>
                     <span
-                        style={{ cursor: "pointer", float:"right" }}
-                        onClick={() => deleteTodo(todo.id, tabName)}
-                      >
-                        <RiDeleteBinLine />
-                      </span>
+                      style={{ cursor: "pointer", float: "right" }}
+                      onClick={() => deleteTodo(todo.id, tabName)}
+                    >
+                      <RiDeleteBinLine />
+                    </span>
                   </Row>
                   <Row>
                     <Col>
@@ -64,6 +69,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       deleteTodo,
+      moveTodo,
     },
     dispatch
   );
