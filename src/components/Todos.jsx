@@ -62,7 +62,7 @@ class Todos extends Component {
     toast.success(
       "Moved to => " + (tabName === "active" ? "Completed" : "Active"),
       {
-        position: toast.POSITION.BOTTOM_CENTER,
+        position: toast.POSITION.TOP_CENTER,
       }
     );
   };

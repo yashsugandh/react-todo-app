@@ -1,17 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import TodoForm from "../TodoForm";
+import TodoForm from "./TodoForm";
 import { addTodo } from "../../redux/actions/todos";
+import { Container, Row, Col } from "reactstrap";
 
 const AddTodo = (props) => (
-  <div className="container todos">
-    <TodoForm
-      onSubmit={(todo) => {
-        props.addTodo(todo);
-      }}
-    />
-  </div>
+  <Container>
+    <Row>
+      <Col
+        sm={{
+          offset: 3,
+          size: 6,
+        }}
+      >
+        <TodoForm
+          onSubmit={(todo) => {
+            props.addTodo(todo);
+          }}
+        />
+      </Col>
+    </Row>
+  </Container>
 );
 
 const mapDispatchToProps = (dispatch) => {

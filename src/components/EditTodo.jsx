@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import TodoForm from "./TodoForm";
+import TodoForm from "./addTodo/TodoForm";
 import { editTodo, deleteTodo } from "../redux/actions/todos";
 
 const EditTodo = (props) => {
