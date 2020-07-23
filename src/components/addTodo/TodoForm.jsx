@@ -76,7 +76,7 @@ export default class TodoForm extends React.Component {
                 onChange={(e) => this.onInputChange(e, "content")}
               />
             </FormGroup>
-            <FormGroup style={{ alignSelf: "center" }}>
+            <FormGroup style={{ textAlign: "center" }}>
               <Button onClick={this.onSubmit} color="primary">
                 Add Todo
               </Button>
