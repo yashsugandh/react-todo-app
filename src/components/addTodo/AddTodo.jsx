@@ -6,7 +6,6 @@ import { addTodo } from "../../redux/actions/todos";
 
 const AddTodo = (props) => (
   <div className="container todos">
-    {/* <h1>Add Todo</h1> */}
     <TodoForm
       onSubmit={(todo) => {
         props.addTodo(todo);

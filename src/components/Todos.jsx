@@ -55,17 +55,30 @@ class Todos extends Component {
 
   moveClicked = (id, tabName, index) => {
     this.props.moveTodo(id, tabName, index);
-    this.notify(tabName);
+    this.notifyMoved(tabName);
   };
 
-  notify = (tabName) => {
-    // toast("Moved to => " + (tabName === "active" ? "Completed" : "Active"));
-    toast.success("Moved to => " + (tabName === "active" ? "Completed" : "Active"), {
-      position: toast.POSITION.BOTTOM_CENTER
+  notifyMoved = (tabName) => {
+    toast.success(
+      "Moved to => " + (tabName === "active" ? "Completed" : "Active"),
+      {
+        position: toast.POSITION.BOTTOM_CENTER,
+      }
+    );
+  };
+
+  deleteClicked = (todo, tabName) => {
+    this.props.deleteTodo(todo.id, tabName);
+    this.notifyDeleted(todo.title);
+  };
+
+  notifyDeleted = (title) => {
+    toast.error("TODO : " + title + " Deleted ", {
+      position: toast.POSITION.TOP_CENTER,
     });
   };
   render() {
-    const { todos, deleteTodo, tabName } = this.props;
+    const { todos, tabName } = this.props;
     const todoList = todos.length ? (
       todos.map((todo, i) => {
         return (
@@ -93,7 +106,7 @@ class Todos extends Component {
                       <CardTitle>{todo.title}</CardTitle>
                       <span
                         style={{ cursor: "pointer", float: "right" }}
-                        onClick={() => deleteTodo(todo.id, tabName)}
+                        onClick={() => this.deleteClicked(todo, tabName )}
                       >
                         <RiDeleteBinLine />
                       </span>
@@ -103,7 +116,6 @@ class Todos extends Component {
                         <CardText>{todo.content}</CardText>
                         <span
                           style={{ cursor: "pointer", float: "right" }}
-                          // onClick={() => editTodo(todo, tabName, i)}
                           onClick={() => this.editButtonClicked(i)}
                         >
                           <AiFillEdit />
@@ -164,7 +176,9 @@ class Todos extends Component {
         );
       })
     ) : (
-      <Alert color ="success" className="center">All Caught Up!</Alert>
+      <Alert color="success" className="center">
+        All Caught Up!
+      </Alert>
     );
 
     return <div className="todos collection">{todoList}</div>;
