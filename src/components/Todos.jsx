@@ -3,6 +3,7 @@ import { deleteTodo, moveTodo, editTodo } from "../redux/actions/todos";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { toast } from "react-toastify";
 import { AiFillEdit } from "react-icons/ai";
 import {
   Input,
@@ -17,6 +18,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Alert,
 } from "reactstrap";
 
 class Todos extends Component {
@@ -50,8 +52,20 @@ class Todos extends Component {
       displayModal: false,
     });
   };
+
+  moveClicked = (id, tabName, index) => {
+    this.props.moveTodo(id, tabName, index);
+    this.notify(tabName);
+  };
+
+  notify = (tabName) => {
+    // toast("Moved to => " + (tabName === "active" ? "Completed" : "Active"));
+    toast.success("Moved to => " + (tabName === "active" ? "Completed" : "Active"), {
+      position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
   render() {
-    const { todos, deleteTodo, tabName, moveTodo } = this.props;
+    const { todos, deleteTodo, tabName } = this.props;
     const todoList = todos.length ? (
       todos.map((todo, i) => {
         return (
@@ -65,7 +79,7 @@ class Todos extends Component {
               >
                 <Input
                   type="checkbox"
-                  onChange={() => moveTodo(todo.id, tabName, i)}
+                  onChange={() => this.moveClicked(todo.id, tabName, i)}
                 />
               </Col>
               <Col
@@ -150,7 +164,7 @@ class Todos extends Component {
         );
       })
     ) : (
-      <p className="center">All Caught Up!</p>
+      <Alert color ="success" className="center">All Caught Up!</Alert>
     );
 
     return <div className="todos collection">{todoList}</div>;
