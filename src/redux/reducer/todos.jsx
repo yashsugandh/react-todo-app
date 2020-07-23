@@ -22,16 +22,11 @@ export default (state = initialState, action) => {
       return { ...updatedState };
     }
     case "EDIT_TODO": {
-      return state.map((todo) => {
-        if (todo.id === action.id) {
-          return {
-            ...todo,
-            ...action.updates,
-          };
-        } else {
-          return todo;
-        }
-      });
+      let updatedState = _.cloneDeep(state);
+      updatedState[action.key][action.index] = action.updatedTodo;
+      return {
+        ...updatedState,
+      };
     }
     case "MOVE_TODO": {
       let updatedState = _.cloneDeep(state);

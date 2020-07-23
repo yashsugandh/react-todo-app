@@ -19,10 +19,11 @@ export const deleteTodo = (id, key) => ({
 });
 
 // EDIT_TODO
-export const editTodo = (id, updates) => ({
+export const editTodo = (updatedTodo, key, index) => ({
   type: "EDIT_TODO",
-  id,
-  updates,
+  updatedTodo,
+  key,
+  index,
 });
 
 // MOVE_TODO
