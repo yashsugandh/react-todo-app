@@ -1,6 +1,4 @@
-// @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Raleway:wght@700&display=swap");
 @import "./settings";
-// @import "./../../node_modules/material-design-icons/iconfont/material-icons.css";
 @import "./nav";
 @import '../components/addTodo/add';
 
@@ -27,7 +25,7 @@ body {
 .brand {
   margin: 3rem 0;
   text-align: center;
-  color: $gray1;
+  color: $blue2;
 }
 
 .style1{
