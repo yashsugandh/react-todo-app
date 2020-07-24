@@ -13,7 +13,7 @@ const Completed = (props) => {
             size: 4,
           }}
         >
-          <Todos todos={props.completed} tabName="completed" />{" "}
+          <Todos todos={props.completed} />
         </Col>
       </Row>
     </div>

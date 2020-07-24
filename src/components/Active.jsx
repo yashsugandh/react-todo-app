@@ -13,7 +13,7 @@ const Active = (props) => {
             size: 4,
           }}
         >
-          <Todos todos={props.active} tabName="active" />
+          <Todos todos={props.active} />
         </Col>
       </Row>
       </div>

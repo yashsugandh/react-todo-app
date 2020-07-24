@@ -8,6 +8,7 @@ const initialState = {
       id: 1,
       title: "Work",
       content: "Bug Fix",
+      isCompleted: false,
     },
   ],
   completed: [],
@@ -37,6 +38,7 @@ export default (state = initialState, action) => {
     case "MOVE_TODO": {
       let updatedState = _.cloneDeep(state);
       let todo = _.cloneDeep(updatedState[action.key][action.index]);
+      todo.isCompleted = !todo.isCompleted;
       updatedState[action.key].splice(action.index, 1);
       action.key === "active"
         ? updatedState.completed.push(todo)

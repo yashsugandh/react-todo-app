@@ -8,6 +8,13 @@ import {
   CardBody,
   CardTitle,
 } from "reactstrap";
+import { toast } from "react-toastify";
+
+const notifyOnAdd = (title) => {
+  toast.success("TODO " + title + " Added", {
+    position: toast.POSITION.TOP_CENTER,
+  });
+};
 
 export default class TodoForm extends React.Component {
   constructor(props) {
@@ -37,6 +44,7 @@ export default class TodoForm extends React.Component {
         content,
         isCompleted,
       });
+      notifyOnAdd(title);
       this.setState({
         title: "",
         content: "",
@@ -83,9 +91,7 @@ export default class TodoForm extends React.Component {
             </FormGroup>
           </CardBody>
         </Card>
-        {/* </Col> */}
       </div>
-      // </Row>
     );
   }
 }

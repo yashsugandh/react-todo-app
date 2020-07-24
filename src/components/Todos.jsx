@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { toast } from "react-toastify";
-import { AiFillEdit } from "react-icons/ai";
+import { GrEdit } from "react-icons/gr";
 import {
   Input,
   Table,
@@ -23,6 +23,7 @@ class Todos extends Component {
       selectedTodo: {},
       displayModal: false,
       selectedIndex: null,
+      isReadyToDelete: false,
     };
   }
 
@@ -37,10 +38,11 @@ class Todos extends Component {
   saveEditClicked = (e) => {
     this.props.editTodo(
       this.state.selectedTodo,
-      this.props.tabName,
+      this.getTabName(this.state.selectedTodo.isCompleted),
       this.state.selectedIndex
     );
 
+    this.notifyUpdated(this.state.selectedTodo.title);
     this.setState({
       selectedIndex: null,
       selectedTodo: {},
@@ -72,45 +74,56 @@ class Todos extends Component {
       position: toast.POSITION.TOP_CENTER,
     });
   };
-  render() {
-    const { todos, tabName } = this.props;
-    const todoList = todos.length ? (
-      todos.map((todo, i) => {
-        return (
-          <tr key={todo.id} className="todo-list">
-            <td>
-              <Input
-                type="checkbox"
-                onChange={() => this.moveClicked(todo.id, tabName, i)}
-              />
-              {todo.title}
-            </td>
-            <td>{todo.content}</td>
-            <td>
-              <span
-                style={{ cursor: "pointer", float: "right" }}
-                onClick={() => this.deleteClicked(todo, tabName)}
-              >
-                <RiDeleteBinLine />
-              </span>
-              <span
-                style={{ cursor: "pointer", float: "right" }}
-                onClick={() => this.editButtonClicked(i)}
-              >
-                <AiFillEdit />
-              </span>
-            </td>
-          </tr>
-        );
-      })
-    ) : (
-      <Alert color="success" className="center">
-        All Caught Up!
-      </Alert>
-    );
 
-    return (
-      <Table hover striped responsive >
+  notifyUpdated = (title) => {
+    toast.info("TODO : " + title + " Updated ", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+
+  getTabName = (isCompleted) => {
+    return isCompleted ? "completed" : "active";
+  };
+
+  render() {
+    const { todos } = this.props;
+    const todoList = todos.map((todo, i) => {
+      return (
+        <tr key={todo.id} className="todo-list">
+          <td>
+            <Input
+              type="checkbox"
+              checked={todo.isCompleted}
+              onChange={() =>
+                this.moveClicked(todo.id, this.getTabName(todo.isCompleted), i)
+              }
+            />
+            {todo.title}
+          </td>
+          <td>{todo.content}</td>
+          <td>
+            <span
+              style={{ cursor: "pointer", marginRight: 5 }}
+              onClick={() =>
+                this.deleteClicked(todo, this.getTabName(todo.isCompleted))
+              }
+            >
+              <RiDeleteBinLine />
+            </span>
+            |
+            <span
+              style={{ cursor: "pointer", marginLeft: 5 }}
+              onClick={() => this.editButtonClicked(i)}
+            >
+              <GrEdit />
+            </span>
+          </td>
+        </tr>
+      );
+    });
+
+    return this.props.todos.length ? (
+      <Table hover striped responsive>
         <thead>
           <th>Title</th>
           <th>Contents</th>
@@ -164,6 +177,10 @@ class Todos extends Component {
           </Modal>
         )}
       </Table>
+    ) : (
+      <Alert color="success" className="center">
+        All Caught Up!
+      </Alert>
     );
   }
 }

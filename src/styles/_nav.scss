@@ -1,12 +1,12 @@
 .main-nav {
-    border-bottom: 1px solid $gray4;
+    border-bottom: 4px solid $gray4;
     margin-bottom: 20px;
   }
   
   ul {
     display: flex;
     justify-content: space-between;
-    margin: 0 2%;
+    margin: 0 1.5%;
     li {
       position: relative;
       list-style: none;
