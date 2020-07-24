@@ -3,7 +3,13 @@ import * as _ from "lodash";
 // Todos Reducer
 
 const initialState = {
-  active: [],
+  active: [
+    {
+      id: 1,
+      title: "Work",
+      content: "Bug Fix",
+    },
+  ],
   completed: [],
 };
 

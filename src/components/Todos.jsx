@@ -7,12 +7,7 @@ import { toast } from "react-toastify";
 import { AiFillEdit } from "react-icons/ai";
 import {
   Input,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
+  Table,
   Modal,
   ModalHeader,
   ModalBody,
@@ -82,97 +77,93 @@ class Todos extends Component {
     const todoList = todos.length ? (
       todos.map((todo, i) => {
         return (
-          <div className="collection-item" key={todo.id}>
-            <Row>
-              <Col
-                lg={{
-                  offset: 2,
-                  size: 2,
-                }}
-              >
-                <Input
-                  type="checkbox"
-                  onChange={() => this.moveClicked(todo.id, tabName, i)}
-                />
-              </Col>
-              <Col
-                lg={{
-                  size: 6,
-                }}
-              >
-                <Card>
-                  <CardBody>
-                    <Row>
-                      <CardTitle>{todo.title}</CardTitle>
-                      <span
-                        style={{ cursor: "pointer", float: "right" }}
-                        onClick={() => this.deleteClicked(todo, tabName )}
-                      >
-                        <RiDeleteBinLine />
-                      </span>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <CardText>{todo.content}</CardText>
-                        <span
-                          style={{ cursor: "pointer", float: "right" }}
-                          onClick={() => this.editButtonClicked(i)}
-                        >
-                          <AiFillEdit />
-                        </span>
-                      </Col>
-                    </Row>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
-            {this.state.displayModal && (
-              <Modal isOpen={this.state.displayModal}>
-                <ModalHeader>Edit todo</ModalHeader>
-                <ModalBody>
-                  <Input
-                    value={this.state.selectedTodo.title}
-                    onChange={(e) =>
-                      this.setState({
-                        selectedTodo: {
-                          ...this.state.selectedTodo,
-                          title: e.target.value,
-                        },
-                      })
-                    }
-                  />
-                  <Input
-                    value={this.state.selectedTodo.content}
-                    onChange={(e) =>
-                      this.setState({
-                        selectedTodo: {
-                          ...this.state.selectedTodo,
-                          content: e.target.value,
-                        },
-                      })
-                    }
-                  />
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="primary" onClick={this.saveEditClicked}>
-                    Save
-                  </Button>{" "}
-                  <Button
-                    color="secondary"
-                    onClick={() =>
-                      this.setState({
-                        displayModal: false,
-                        selectedTodo: {},
-                        selectedIndex: null,
-                      })
-                    }
-                  >
-                    Cancel
-                  </Button>
-                </ModalFooter>
-              </Modal>
-            )}
-          </div>
+          <Table bordered hover striped responsive>
+            <div key={todo.id}>
+              <thead>
+                <th>
+                  Mark as {this.tabName === "active" ? "Complete" : "Active"}
+                </th>
+                <th>Title</th>
+                <th>Contents</th>
+                <th>Delete</th>
+                <th>Edit</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <Input
+                      type="checkbox"
+                      onChange={() => this.moveClicked(todo.id, tabName, i)}
+                    />
+                  </td>
+                  <td>{todo.title}</td>
+                  <td>{todo.content}</td>
+                  <td>
+                    <span
+                      style={{ cursor: "pointer", float: "right" }}
+                      onClick={() => this.deleteClicked(todo, tabName)}
+                    >
+                      <RiDeleteBinLine />
+                    </span>
+                  </td>
+                  <td>
+                    <span
+                      style={{ cursor: "pointer", float: "right" }}
+                      onClick={() => this.editButtonClicked(i)}
+                    >
+                      <AiFillEdit />
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+              {this.state.displayModal && (
+                <Modal isOpen={this.state.displayModal}>
+                  <ModalHeader>Edit todo</ModalHeader>
+                  <ModalBody>
+                    <Input
+                      value={this.state.selectedTodo.title}
+                      onChange={(e) =>
+                        this.setState({
+                          selectedTodo: {
+                            ...this.state.selectedTodo,
+                            title: e.target.value,
+                          },
+                        })
+                      }
+                    />
+                    <Input
+                      value={this.state.selectedTodo.content}
+                      onChange={(e) =>
+                        this.setState({
+                          selectedTodo: {
+                            ...this.state.selectedTodo,
+                            content: e.target.value,
+                          },
+                        })
+                      }
+                    />
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="primary" onClick={this.saveEditClicked}>
+                      Save
+                    </Button>{" "}
+                    <Button
+                      color="secondary"
+                      onClick={() =>
+                        this.setState({
+                          displayModal: false,
+                          selectedTodo: {},
+                          selectedIndex: null,
+                        })
+                      }
+                    >
+                      Cancel
+                    </Button>
+                  </ModalFooter>
+                </Modal>
+              )}
+            </div>
+          </Table>
         );
       })
     ) : (

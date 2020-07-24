@@ -51,8 +51,8 @@ export default class TodoForm extends React.Component {
       <div>
         {error && <p>{error}</p>}
         {/* <Col> */}
-        <Card>
-          <CardTitle className="add-card-title">
+        <Card className="add-todo-card">
+          <CardTitle className="add-todo-card-title">
             Umm What's the task for??
           </CardTitle>
           <CardBody>

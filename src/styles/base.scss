@@ -1,12 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Raleway:wght@700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Raleway:wght@700&display=swap");
 @import "./settings";
-@import "./../../node_modules/material-design-icons/iconfont/material-icons.css";
+// @import "./../../node_modules/material-design-icons/iconfont/material-icons.css";
 @import "./nav";
 @import '../components/addTodo/add';
-
-.material-icons {
-  font-size: inherit;
-}
 
 * {
   margin: 0;
@@ -21,19 +17,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.todo-list{
+  margin-top: 20px;
+  text-align: center;
 }
 
-h1 {
-  font-family: Raleway, sans-serif;
-}
-
-// .container {
-//   width: 50vw;
-//   margin: 0 auto;
-// }
 
 .brand {
   margin: 3rem 0;
@@ -41,16 +29,15 @@ h1 {
   color: $gray1;
 }
 
-.todos {
-  margin-block-start: 1rem;
+.style1{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
 }
 
-.footer {
-  position: fixed;
-  width: inherit;
-  bottom: 1rem;
-  color: $gray4;
-  display: flex;
-  justify-content: center;
+.style2{
+  flex: 1;
   text-align: center;
 }
