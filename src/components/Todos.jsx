@@ -77,93 +77,30 @@ class Todos extends Component {
     const todoList = todos.length ? (
       todos.map((todo, i) => {
         return (
-          <Table bordered hover striped responsive>
-            <div key={todo.id}>
-              <thead>
-                <th>
-                  Mark as {this.tabName === "active" ? "Complete" : "Active"}
-                </th>
-                <th>Title</th>
-                <th>Contents</th>
-                <th>Delete</th>
-                <th>Edit</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Input
-                      type="checkbox"
-                      onChange={() => this.moveClicked(todo.id, tabName, i)}
-                    />
-                  </td>
-                  <td>{todo.title}</td>
-                  <td>{todo.content}</td>
-                  <td>
-                    <span
-                      style={{ cursor: "pointer", float: "right" }}
-                      onClick={() => this.deleteClicked(todo, tabName)}
-                    >
-                      <RiDeleteBinLine />
-                    </span>
-                  </td>
-                  <td>
-                    <span
-                      style={{ cursor: "pointer", float: "right" }}
-                      onClick={() => this.editButtonClicked(i)}
-                    >
-                      <AiFillEdit />
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-              {this.state.displayModal && (
-                <Modal isOpen={this.state.displayModal}>
-                  <ModalHeader>Edit todo</ModalHeader>
-                  <ModalBody>
-                    <Input
-                      value={this.state.selectedTodo.title}
-                      onChange={(e) =>
-                        this.setState({
-                          selectedTodo: {
-                            ...this.state.selectedTodo,
-                            title: e.target.value,
-                          },
-                        })
-                      }
-                    />
-                    <Input
-                      value={this.state.selectedTodo.content}
-                      onChange={(e) =>
-                        this.setState({
-                          selectedTodo: {
-                            ...this.state.selectedTodo,
-                            content: e.target.value,
-                          },
-                        })
-                      }
-                    />
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button color="primary" onClick={this.saveEditClicked}>
-                      Save
-                    </Button>{" "}
-                    <Button
-                      color="secondary"
-                      onClick={() =>
-                        this.setState({
-                          displayModal: false,
-                          selectedTodo: {},
-                          selectedIndex: null,
-                        })
-                      }
-                    >
-                      Cancel
-                    </Button>
-                  </ModalFooter>
-                </Modal>
-              )}
-            </div>
-          </Table>
+          <tr key={todo.id} className="todo-list">
+            <td>
+              <Input
+                type="checkbox"
+                onChange={() => this.moveClicked(todo.id, tabName, i)}
+              />
+              {todo.title}
+            </td>
+            <td>{todo.content}</td>
+            <td>
+              <span
+                style={{ cursor: "pointer", float: "right" }}
+                onClick={() => this.deleteClicked(todo, tabName)}
+              >
+                <RiDeleteBinLine />
+              </span>
+              <span
+                style={{ cursor: "pointer", float: "right" }}
+                onClick={() => this.editButtonClicked(i)}
+              >
+                <AiFillEdit />
+              </span>
+            </td>
+          </tr>
         );
       })
     ) : (
@@ -172,7 +109,62 @@ class Todos extends Component {
       </Alert>
     );
 
-    return <div className="todos collection">{todoList}</div>;
+    return (
+      <Table hover striped responsive >
+        <thead>
+          <th>Title</th>
+          <th>Contents</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>{todoList}</tbody>
+        {this.state.displayModal && (
+          <Modal isOpen={this.state.displayModal}>
+            <ModalHeader>Edit todo</ModalHeader>
+            <ModalBody>
+              <Input
+                value={this.state.selectedTodo.title}
+                onChange={(e) =>
+                  this.setState({
+                    selectedTodo: {
+                      ...this.state.selectedTodo,
+                      title: e.target.value,
+                    },
+                  })
+                }
+              />
+              <Input
+                value={this.state.selectedTodo.content}
+                onChange={(e) =>
+                  this.setState({
+                    selectedTodo: {
+                      ...this.state.selectedTodo,
+                      content: e.target.value,
+                    },
+                  })
+                }
+              />
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={this.saveEditClicked}>
+                Save
+              </Button>
+              <Button
+                color="secondary"
+                onClick={() =>
+                  this.setState({
+                    displayModal: false,
+                    selectedTodo: {},
+                    selectedIndex: null,
+                  })
+                }
+              >
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
+        )}
+      </Table>
+    );
   }
 }
 
