@@ -9,7 +9,8 @@ To setup app on your local device
 
 The server is now up and running on **`localhost:3000`**
 
-The TODO's have been divided into three tabs
+The TODO's have been divided into three tabs:
+
 **1. Active :** In Active tab all the TODOs that are yet to be completed.
 
 **2. Completed :** In Completed tab all the TODOs that are completed are present.
