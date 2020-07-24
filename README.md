@@ -17,7 +17,8 @@ The TODO's have been divided into three tabs:
 
 **3.All :** In All tab both the active as well as the completed TODOs are present.
 
-Operations that can be performed
+Operations that can be performed:
+
 By default a TODO has been created with `title` **WORK**
 
 **1. Add TODO**
