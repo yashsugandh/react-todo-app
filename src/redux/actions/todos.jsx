@@ -1,9 +1,9 @@
 import { v4 as uuid } from "uuid";
-import { ADD_TODO, DELETE_TODO, EDIT_TODO, MOVE_TODO } from "./actionTypes";
+import { TODO } from "./actionTypes";
 
 // ADD TODO
 export const addTodo = ({ title = "", content = "", isCompleted = false }) => ({
-  type: ADD_TODO,
+  type: TODO.ADD,
   todo: {
     id: uuid(),
     title,
@@ -14,14 +14,14 @@ export const addTodo = ({ title = "", content = "", isCompleted = false }) => ({
 
 // DELETE_TODO
 export const deleteTodo = (id, key) => ({
-  type: DELETE_TODO,
+  type: TODO.DELETE,
   id,
   key,
 });
 
 // EDIT_TODO
 export const editTodo = (updatedTodo, key, index) => ({
-  type: EDIT_TODO,
+  type: TODO.EDIT,
   updatedTodo,
   key,
   index,
@@ -29,7 +29,7 @@ export const editTodo = (updatedTodo, key, index) => ({
 
 // MOVE_TODO
 export const moveTodo = (id, key, index) => ({
-  type: MOVE_TODO,
+  type: TODO.MOVE,
   id,
   key,
   index,

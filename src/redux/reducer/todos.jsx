@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-
+import { TODO } from "../actions/actionTypes";
 // Todos Reducer
 
 const initialState = {
@@ -16,26 +16,26 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_TODO": {
+    case TODO.ADD: {
       let active = _.cloneDeep(state.active);
       active.push(action.todo);
       return { ...state, active };
     }
-    case "DELETE_TODO": {
+    case TODO.DELETE: {
       let updatedState = _.cloneDeep(state);
       updatedState[action.key] = updatedState[action.key].filter(
         (todo) => todo.id !== action.id
       );
       return { ...updatedState };
     }
-    case "EDIT_TODO": {
+    case TODO.EDIT: {
       let updatedState = _.cloneDeep(state);
       updatedState[action.key][action.index] = action.updatedTodo;
       return {
         ...updatedState,
       };
     }
-    case "MOVE_TODO": {
+    case TODO.MOVE: {
       let updatedState = _.cloneDeep(state);
       let todo = _.cloneDeep(updatedState[action.key][action.index]);
       todo.isCompleted = !todo.isCompleted;
